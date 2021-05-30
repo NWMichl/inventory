@@ -1,9 +1,9 @@
 # Example Ansible Inventory for Data Center use cases
 
 [aci_fab1]
-apic1-1 ansible_host=10.0.0.11 inv=a1001 cimc=10.0.0.21 rack=n101
-apic1-2 ansible_host=10.0.0.13 inv=a1002 cimc=10.0.0.22 rack=n102
-apic1-3 ansible_host=10.0.0.13 inv=a1003 cimc=10.0.0.23 rack=n201
+apic1-1 ansible_host=10.0.0.11 inv=a1001 node=1 cimc=10.0.0.21 rack=n101
+apic1-2 ansible_host=10.0.0.13 inv=a1002 node=2 cimc=10.0.0.22 rack=n102
+apic1-3 ansible_host=10.0.0.13 inv=a1003 node=3 cimc=10.0.0.23 rack=n201
 
 spine1-1 ansible_host=10.0.0.201 inv=s1001 pod=1 node=201 sn=CWIK5XGALBD rack=n101
 spine1-2 ansible_host=10.0.0.202 inv=s1002 pod=1 node=202 sn=6WP1ZWZSAC8 rack=n201
@@ -18,12 +18,12 @@ leaf1-7 ansible_host=10.0.0.107 inv=l1007 pod=1 node=107 vpc=202 sn=0PCGK0NW6JJ 
 leaf1-8 ansible_host=10.0.0.108 inv=l1008 pod=1 node=108 vpc=202 sn=EVWRLT031C1 rack=s201
 
 [dc_core]
-csw-1 ansible_host=10.10.0.11 inv=c1001 ansible_network_os=nxos con1=172.16.0.11:2004 con2=172.16.0.11:2005 sn=YXUYCUB9EAC rack=n101
-csw-2 ansible_host=10.10.0.12 inv=c1001 ansible_network_os=nxos con1=172.16.0.11:2006 con2=172.16.0.11:2007 sn=SZGPNXXIEG7 rack=n201
+csw-1 ansible_host=10.10.0.11 inv=c1001 ansible_network_os=nxos con1=172.16.1.11:2004 con2=172.16.1.11:2005 sn=YXUYCUB9EAC rack=n101
+csw-2 ansible_host=10.10.0.12 inv=c1001 ansible_network_os=nxos con1=172.16.2.11:2004 con2=172.16.2.11:2005 sn=SZGPNXXIEG7 rack=n201
 
 [dc_east]
-dsw-e1 ansible_host=10.0.10.11 inv=n1001 ansible_network_os=nxos con1=172.16.1.11:2004 con2=172.16.1.11:2005 sw1=true vpc=11 sn=4JKW56HGXG6 rack=n101
-dsw-e2 ansible_host=10.0.10.12 inv=n1002 ansible_network_os=nxos con1=172.16.1.11:2006 con2=172.16.1.11:2007 sw2=true vpc=11 sn=YG3WYCJQQGB rack=n102
+dsw-e1 ansible_host=10.0.10.11 inv=n1001 ansible_network_os=nxos con1=172.16.1.11:2006 con2=172.16.1.11:2007 sw1=true vpc=11 sn=4JKW56HGXG6 rack=n101
+dsw-e2 ansible_host=10.0.10.12 inv=n1002 ansible_network_os=nxos con1=172.16.1.11:2008 con2=172.16.1.11:2009 sw2=true vpc=11 sn=YG3WYCJQQGB rack=n102
 
 asw-e1 ansible_host=10.0.10.11 inv=n1101 ansible_network_os=nxos fex=111 sn=PBR1OWX2U4Q rack=s111
 asw-e2 ansible_host=10.0.10.12 inv=n1102 ansible_network_os=nxos fex=111 sn=IVFFBE7GT7I rack=s111
@@ -35,8 +35,8 @@ asw-e7 ansible_host=10.0.10.11 inv=n1107 ansible_network_os=nxos fex=114 sn=P1BB
 asw-e8 ansible_host=10.0.10.12 inv=n1108 ansible_network_os=nxos fex=114 sn=W0DRHCE3P9K rack=s114
 
 [dc_west]
-dsw-w1 ansible_host=10.0.20.11 inv=n1003 ansible_network_os=nxos con1=172.16.2.11:2004 con2=172.16.2.11:2005 sw1=true vpc=21 sn=394HGMWSH29 rack=n201
-dsw-w2 ansible_host=10.0.20.12 inv=n1004 ansible_network_os=nxos con1=172.16.2.11:2006 con2=172.16.2.11:2007 sw2=true vpc=21 sn=ZVOPWS9LKNF rack=n202
+dsw-w1 ansible_host=10.0.20.11 inv=n1003 ansible_network_os=nxos con1=172.16.2.11:2006 con2=172.16.2.11:2007 sw1=true vpc=21 sn=394HGMWSH29 rack=n201
+dsw-w2 ansible_host=10.0.20.12 inv=n1004 ansible_network_os=nxos con1=172.16.2.11:2008 con2=172.16.2.11:2009 sw2=true vpc=21 sn=ZVOPWS9LKNF rack=n202
 
 asw-w1 ansible_host=10.0.20.101 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2008 sn=SM17EWEZKMO rack=s211
 asw-w2 ansible_host=10.0.20.102 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2009 sn=91WP6UU7VIL rack=s211
