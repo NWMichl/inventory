@@ -1,0 +1,9 @@
+---
+- name: Generate nice Markdown from hosts file
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+
+  - name: TEMPLATE OUT MARKDOWN FILE WITH JINJA2
+    template: src=pimp_my_hosts.j2 dest="hosts.md"
