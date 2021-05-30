@@ -1,0 +1,27 @@
+#jinja2: lstrip_blocks: True
+# Host Groups
+
+{% for group in groups.keys() | list | sort %}
+  {% if 'all' not in group and 'ungrouped' not in group %}
+**[{{ group }}](#{{ group }})**<br>
+  {% endif %}
+{% endfor %}
+
+
+{% for group in groups.keys() | list | sort %}
+  {% if 'all' not in group and 'ungrouped' not in group %}
+## **{{ group }}**
+
+| **Hostname** | **HSK** | **Node/Fex** | **Mgmt-IP** | **Con1/CIMC** | **Con2** |
+| ------------ | --------| ------------ | ------------| ------------- | -------- |
+    {% for host in groups[group] | sort %}
+      {% set cell_hsk = hostvars[host].hsk | default('') %}
+      {% set cell_node_fex = hostvars[host].node | default('') | string + hostvars[host].fex | default('') | string %}
+      {% set cell_mgmt_ip = '[' + hostvars[host].ansible_host | default('') + '](ssh://' + hostvars[host].ansible_host | default('') + ')' %}
+      {% set cell_con1_cimc = '[' + hostvars[host].con1 | default('') + hostvars[host].cimc | default('') + '](ssh://' + hostvars[host].con1 | default('') + hostvars[host].cimc | default('') + ')' %}
+      {% set cell_con2 = '[' + hostvars[host].con2 | default('') + '](ssh://' + hostvars[host].con2 | default('') + ')' %}
+| {{ host }} | {{ cell_hsk }} | {{ cell_node_fex }} | {{ cell_mgmt_ip }} | {{ cell_con1_cimc }} | {{ cell_con2 }} |
+    {% endfor %}
+
+  {% endif %}
+{% endfor %}
