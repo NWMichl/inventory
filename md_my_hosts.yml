@@ -6,4 +6,4 @@
   tasks:
 
   - name: TEMPLATE OUT MARKDOWN FILE WITH JINJA2
-    template: src=pimp_my_hosts.j2 dest="hosts.md"
+    template: src=md_my_hosts.j2 dest="hosts.md"

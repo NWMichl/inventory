@@ -1,54 +1,52 @@
 # Example Ansible Inventory for Data Center use cases
 
 [aci_fab1]
-apic1-1 ansible_host=10.0.0.11 inv=a1001 cimc=10.0.0.21
-apic1-2 ansible_host=10.0.0.13 inv=a1002 cimc=10.0.0.22
-apic1-3 ansible_host=10.0.0.13 inv=a1003 cimc=10.0.0.23
+apic1-1 ansible_host=10.0.0.11 inv=a1001 cimc=10.0.0.21 rack=n101
+apic1-2 ansible_host=10.0.0.13 inv=a1002 cimc=10.0.0.22 rack=n102
+apic1-3 ansible_host=10.0.0.13 inv=a1003 cimc=10.0.0.23 rack=n201
 
-spine1-1 ansible_host=10.0.0.201 inv=s1001 cidr=24 gw=10.0.0.1 pod=1 node=201 sn=CWIK5XGALBD
-spine1-2 ansible_host=10.0.0.202 inv=s1002 cidr=24 gw=10.0.0.1 pod=1 node=202 sn=6WP1ZWZSAC8
+spine1-1 ansible_host=10.0.0.201 inv=s1001 pod=1 node=201 sn=CWIK5XGALBD rack=n101
+spine1-2 ansible_host=10.0.0.202 inv=s1002 pod=1 node=202 sn=6WP1ZWZSAC8 rack=n201
 
-leaf1-1 ansible_host=10.0.0.101 inv=l1001 cidr=24 gw=10.0.0.1 pod=1 node=101 sn=B9IGS3YD35F
-leaf1-2 ansible_host=10.0.0.102 inv=l1002 cidr=24 gw=10.0.0.1 pod=1 node=102 sn=9SDXW8SUPDW
-leaf1-3 ansible_host=10.0.0.103 inv=l1003 cidr=24 gw=10.0.0.1 pod=1 node=103 sn=2LBN384V5IS
-leaf1-4 ansible_host=10.0.0.104 inv=l1004 cidr=24 gw=10.0.0.1 pod=1 node=104 sn=R3I14KVWD4N
-leaf1-5 ansible_host=10.0.0.105 inv=l1005 cidr=24 gw=10.0.0.1 pod=1 node=105 sn=DEMVPI6HMCF
-leaf1-6 ansible_host=10.0.0.106 inv=l1006 cidr=24 gw=10.0.0.1 pod=1 node=106 sn=2AISE18WIDC
-leaf1-7 ansible_host=10.0.0.107 inv=l1007 cidr=24 gw=10.0.0.1 pod=1 node=107 sn=0PCGK0NW6JJ
-leaf1-8 ansible_host=10.0.0.108 inv=l1008 cidr=24 gw=10.0.0.1 pod=1 node=108 sn=EVWRLT031C1
+leaf1-1 ansible_host=10.0.0.101 inv=l1001 pod=1 node=101 vpc=101 sn=B9IGS3YD35F rack=s101
+leaf1-2 ansible_host=10.0.0.102 inv=l1002 pod=1 node=102 vpc=101 sn=9SDXW8SUPDW rack=s101
+leaf1-3 ansible_host=10.0.0.103 inv=l1003 pod=1 node=103 vpc=102 sn=2LBN384V5IS rack=s102
+leaf1-4 ansible_host=10.0.0.104 inv=l1004 pod=1 node=104 vpc=102 sn=R3I14KVWD4N rack=s102
+leaf1-5 ansible_host=10.0.0.105 inv=l1005 pod=1 node=105 vpc=201 sn=DEMVPI6HMCF rack=s201
+leaf1-6 ansible_host=10.0.0.106 inv=l1006 pod=1 node=106 vpc=201 sn=2AISE18WIDC rack=s201
+leaf1-7 ansible_host=10.0.0.107 inv=l1007 pod=1 node=107 vpc=202 sn=0PCGK0NW6JJ rack=s201
+leaf1-8 ansible_host=10.0.0.108 inv=l1008 pod=1 node=108 vpc=202 sn=EVWRLT031C1 rack=s201
 
 [dc_core]
-csw-1 ansible_host=10.10.0.11 inv=c1001 ansible_network_os=nxos con1=172.16.0.11:2004 con2=172.16.0.11:2005 sn=YXUYCUB9EAC
-csw-2 ansible_host=10.10.0.12 inv=c1001 ansible_network_os=nxos con1=172.16.0.11:2006 con2=172.16.0.11:2007 sn=SZGPNXXIEG7
+csw-1 ansible_host=10.10.0.11 inv=c1001 ansible_network_os=nxos con1=172.16.0.11:2004 con2=172.16.0.11:2005 sn=YXUYCUB9EAC rack=n101
+csw-2 ansible_host=10.10.0.12 inv=c1001 ansible_network_os=nxos con1=172.16.0.11:2006 con2=172.16.0.11:2007 sn=SZGPNXXIEG7 rack=n201
 
 [dc_east]
-dsw-e1 ansible_host=10.0.10.11 inv=n1001 ansible_network_os=nxos con1=172.16.1.11:2004 con2=172.16.1.11:2005 sw1=true vpc=11 sn=4JKW56HGXG6
-dsw-e2 ansible_host=10.0.10.12 inv=n1002 ansible_network_os=nxos con1=172.16.1.11:2006 con2=172.16.1.11:2007 sw2=true vpc=11 sn=YG3WYCJQQGB
+dsw-e1 ansible_host=10.0.10.11 inv=n1001 ansible_network_os=nxos con1=172.16.1.11:2004 con2=172.16.1.11:2005 sw1=true vpc=11 sn=4JKW56HGXG6 rack=n101
+dsw-e2 ansible_host=10.0.10.12 inv=n1002 ansible_network_os=nxos con1=172.16.1.11:2006 con2=172.16.1.11:2007 sw2=true vpc=11 sn=YG3WYCJQQGB rack=n102
 
-asw-e1 ansible_host=10.0.10.11 inv=n1101 ansible_network_os=nxos fex=101 sn=PBR1OWX2U4Q
-asw-e2 ansible_host=10.0.10.12 inv=n1102 ansible_network_os=nxos fex=101 sn=IVFFBE7GT7I
-asw-e3 ansible_host=10.0.10.11 inv=n1103 ansible_network_os=nxos fex=102 sn=QTPIZXBRW6C
-asw-e4 ansible_host=10.0.10.12 inv=n1104 ansible_network_os=nxos fex=102 sn=0Q4UDI5TWXV
-asw-e5 ansible_host=10.0.10.11 inv=n1105 ansible_network_os=nxos fex=103 sn=63G1J8MHR1C
-asw-e6 ansible_host=10.0.10.12 inv=n1106 ansible_network_os=nxos fex=103 sn=VA12OT8FL4A
-asw-e7 ansible_host=10.0.10.11 inv=n1107 ansible_network_os=nxos fex=104 sn=P1BB60Q9ACW
-W0DRHCE3P9K
-asw-e8 ansible_host=10.0.10.12 inv=n1108 ansible_network_os=nxos fex=104 sn=
-
+asw-e1 ansible_host=10.0.10.11 inv=n1101 ansible_network_os=nxos fex=111 sn=PBR1OWX2U4Q rack=s111
+asw-e2 ansible_host=10.0.10.12 inv=n1102 ansible_network_os=nxos fex=111 sn=IVFFBE7GT7I rack=s111
+asw-e3 ansible_host=10.0.10.11 inv=n1103 ansible_network_os=nxos fex=112 sn=QTPIZXBRW6C rack=s112
+asw-e4 ansible_host=10.0.10.12 inv=n1104 ansible_network_os=nxos fex=112 sn=0Q4UDI5TWXV rack=s112
+asw-e5 ansible_host=10.0.10.11 inv=n1105 ansible_network_os=nxos fex=113 sn=63G1J8MHR1C rack=s113
+asw-e6 ansible_host=10.0.10.12 inv=n1106 ansible_network_os=nxos fex=113 sn=VA12OT8FL4A rack=s113
+asw-e7 ansible_host=10.0.10.11 inv=n1107 ansible_network_os=nxos fex=114 sn=P1BB60Q9ACW rack=s114
+asw-e8 ansible_host=10.0.10.12 inv=n1108 ansible_network_os=nxos fex=114 sn=W0DRHCE3P9K rack=s114
 
 [dc_west]
-dsw-w1 ansible_host=10.0.20.11 inv=n1003 ansible_network_os=nxos con1=172.16.2.11:2004 con2=172.16.2.11:2005 sw1=true vpc=21 sn=394HGMWSH29
-dsw-w2 ansible_host=10.0.20.12 inv=n1004 ansible_network_os=nxos con1=172.16.2.11:2006 con2=172.16.2.11:2007 sw2=true vpc=21 sn=ZVOPWS9LKNF
+dsw-w1 ansible_host=10.0.20.11 inv=n1003 ansible_network_os=nxos con1=172.16.2.11:2004 con2=172.16.2.11:2005 sw1=true vpc=21 sn=394HGMWSH29 rack=n201
+dsw-w2 ansible_host=10.0.20.12 inv=n1004 ansible_network_os=nxos con1=172.16.2.11:2006 con2=172.16.2.11:2007 sw2=true vpc=21 sn=ZVOPWS9LKNF rack=n202
 
-asw-w1 ansible_host=10.0.20.101 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2008 sn=SM17EWEZKMO
-asw-w2 ansible_host=10.0.20.102 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2009 sn=91WP6UU7VIL
-asw-w3 ansible_host=10.0.20.103 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2010 sn=9AFDNO0USD2
-asw-w4 ansible_host=10.0.20.104 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2011 sn=L6VTBLB4EC2
-asw-w5 ansible_host=10.0.20.105 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2012 sn=6CKUOP22YCM
-asw-w6 ansible_host=10.0.20.106 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2013 sn=G0U5Q4IKYOG
-asw-w7 ansible_host=10.0.20.107 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2014 sn=NTEATOHRP75
-asw-w8 ansible_host=10.0.20.108 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2015 sn=UD9Q2A5SGTO
+asw-w1 ansible_host=10.0.20.101 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2008 sn=SM17EWEZKMO rack=s211
+asw-w2 ansible_host=10.0.20.102 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2009 sn=91WP6UU7VIL rack=s211
+asw-w3 ansible_host=10.0.20.103 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2010 sn=9AFDNO0USD2 rack=s212
+asw-w4 ansible_host=10.0.20.104 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2011 sn=L6VTBLB4EC2 rack=s212
+asw-w5 ansible_host=10.0.20.105 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2012 sn=6CKUOP22YCM rack=s213
+asw-w6 ansible_host=10.0.20.106 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2013 sn=G0U5Q4IKYOG rack=s213
+asw-w7 ansible_host=10.0.20.107 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2014 sn=NTEATOHRP75 rack=s214
+asw-w8 ansible_host=10.0.20.108 inv=n1201 ansible_network_os=ios con1=172.16.2.11:2015 sn=UD9Q2A5SGTO rack=s214
 
 [staging]
-asw-e9 ansible_host=10.0.10.11 inv=n1109 ansible_network_os=nxos fex=105 sn=IN6YK465F74
-asw-e10 ansible_host=10.0.10.12 inv=n1110 ansible_network_os=nxos fex=105 sn=42DOF7EU7ID
+asw-e9 ansible_host=10.0.10.11 inv=n1109 ansible_network_os=nxos fex=105 sn=IN6YK465F74 rack=s115
+asw-e10 ansible_host=10.0.10.12 inv=n1110 ansible_network_os=nxos fex=105 sn=42DOF7EU7ID rack=s115

@@ -1,5 +1,5 @@
 #jinja2: lstrip_blocks: True
-# Host Groups
+# Device Inventory
 
 {% for group in groups.keys() | list | sort %}
   {% if 'all' not in group and 'ungrouped' not in group %}
@@ -12,8 +12,8 @@
   {% if 'all' not in group and 'ungrouped' not in group %}
 ## **{{ group }}**
 
-| **Hostname** | **HSK** | **Node/Fex** | **Mgmt-IP** | **Con1/CIMC** | **Con2** |
-| ------------ | --------| ------------ | ------------| ------------- | -------- |
+| **Hostname** | **INV-ID** | **Node/Fex** | **Mgmt-IP** | **Con1/CIMC** | **Con2** |
+| ------------ | ---------- | ------------ | ------------| ------------- | -------- |
     {% for host in groups[group] | sort %}
       {% set cell_hsk = hostvars[host].hsk | default('') %}
       {% set cell_node_fex = hostvars[host].node | default('') | string + hostvars[host].fex | default('') | string %}
